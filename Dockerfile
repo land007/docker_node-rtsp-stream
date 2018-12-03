@@ -2,17 +2,17 @@ FROM land007/node:latest
 
 MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
 
-RUN . $HOME/.nvm/nvm.sh && npm install node-rtsp-stream
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
-RUN . $HOME/.nvm/nvm.sh && npm install -g http-server
 
 ADD node /node
-RUN ls /node/
+
 RUN chmod +x /node/start_webserver.sh
 ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/
-RUN ls /
-RUN which http-server
+
+RUN . $HOME/.nvm/nvm.sh && cd /node && npm install --save node-rtsp-stream && npm install -g http-server
 RUN ls /node/node_modules
+RUN which http-server
+
 ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /node/node_modules/node-rtsp-stream/lib/mpeg1muxer.js
 ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
