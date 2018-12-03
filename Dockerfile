@@ -3,17 +3,14 @@ FROM land007/node:latest
 MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
 
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
-
-ADD node /node
-
-RUN chmod +x /node/start_webserver.sh
+RUN . $HOME/.nvm/nvm.sh && cd /node && npm install --save node-rtsp-stream && npm install -g http-server
+RUN ls /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules/
+ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules/node-rtsp-stream/lib/mpeg1muxer.js
+RUN which http-server
 ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/
 
-RUN . $HOME/.nvm/nvm.sh && cd /node && npm install --save node-rtsp-stream && npm install -g http-server
-RUN ls /node/node_modules
-RUN which http-server
-
-ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /node/node_modules/node-rtsp-stream/lib/mpeg1muxer.js
+ADD node /node
+RUN chmod +x /node/start_webserver.sh
 ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
