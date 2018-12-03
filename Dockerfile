@@ -14,7 +14,8 @@ RUN chmod +x /node/start_webserver.sh
 ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
-RUN rm -rf /node_ && mv /node /node_
+RUN rm -rf /node_
+RUN mv /node /node_
 ENV RTSPURL=rtsp://admin:abcd1234@192.168.0.234:554/cam/realmonitor?channel=1&subtype=1
 ENV WH=1024x576
 
