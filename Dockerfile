@@ -27,4 +27,7 @@ EXPOSE 8000/tcp 8100/tcp
 #docker kill debian_node-rtsp-stream; docker rm debian_node-rtsp-stream; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1188x668" land007/node-rtsp-stream:latest
 
 #docker push registry.eyecool.cn:5080/node-rtsp-stream:latest
-#docker kill debian_node-rtsp-stream; docker rm debian_node-rtsp-stream; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1188x668" registry.eyecool.cn:5080/node-rtsp-stream:latest
+#docker pull registry.eyecool.cn:5080/node-rtsp-stream:latest; docker kill debian_node-rtsp-stream; docker rm debian_node-rtsp-stream; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1188x668" registry.eyecool.cn:5080/node-rtsp-stream:latest
+
+#shangke
+#docker pull registry.eyecool.cn:5080/node-rtsp-stream:latest; docker kill debian_node-rtsp-stream; docker rm debian_node-rtsp-stream; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream -e "RTSPURL=rtsp://admin:abcd1234@172.16.0.104:554" -e "WH=1188x668" registry.eyecool.cn:5080/node-rtsp-stream:latest
