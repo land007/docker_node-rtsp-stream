@@ -8,7 +8,7 @@ ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /root/.nvm/versions/node/$SH
 ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/
 RUN which http-server
 
-RUN ln -s $HOME/.nvm/versions/node/v10.13.0/lib/node_modules /node_
+#RUN ln -s $HOME/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules /node_
 ADD node /node_
 RUN ls /node_
 RUN chmod +x /node_/start_webserver.sh
