@@ -5,5 +5,5 @@ var RTSPURL =  process.env['RTSPURL'] || 'rtsp://admin:Admin123@192.168.0.241:55
 stream = new Stream({
     name: 'name',
     streamUrl: RTSPURL,
-    wsPort: 8100
+    wsPort: 7101
 });
