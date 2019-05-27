@@ -23,7 +23,13 @@ ENV QUALITY=1
 EXPOSE 8101/tcp 7101/tcp
 RUN chmod +x /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/supervisor
 
-CMD /check.sh /node; /etc/init.d/ssh start ; cd /node && nohup http-server -a 0.0.0.0 -p 8101 > web.out 2>&1 & supervisor -w /node/ /node/main.js
+RUN echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_time
+RUN echo "land007/node-rtsp-stream" >> /.image_name
+
+#CMD /check.sh /node; /etc/init.d/ssh start ; cd /node && nohup http-server -a 0.0.0.0 -p 8101 > web.out 2>&1 & supervisor -w /node/ /node/main.js
+RUN echo "/check.sh /node" >> /start.sh
+RUN echo "cd /node && nohup http-server -a 0.0.0.0 -p 8101 > web.out 2>&1 &" >> /start.sh
+RUN echo "supervisor -w /node/ /node/main.js" >> /start.sh
 
 #docker save -o eyecool-rtsp-stream.tar registry.eyecool.cn:5080/node-rtsp-stream:latest && sudo gzip eyecool-rtsp-stream.tar && sudo chmod 777 eyecool-rtsp-stream.tar.gz
 
